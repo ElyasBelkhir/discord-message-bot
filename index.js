@@ -1,13 +1,11 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, GatewayIntentBits } = require('discord.js');
-const { token } = require('./config.json');
 const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+require("dotenv").config();
 
-// Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
-// When the client is ready, run this code (only once)
 client.once('ready', () => {
 	console.log('Ready!');
 });
@@ -48,5 +46,4 @@ client.on('interactionCreate', async interaction => {
 });
 
 
-// Login to Discord with your client's token
-client.login(token);
+client.login(process.env.TOKEN);
