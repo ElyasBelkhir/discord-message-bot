@@ -1,46 +1,24 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, GatewayIntentBits } = require('discord.js');
-const { AttachmentBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { Client, GatewayIntentBits, Collection } = require('discord.js');
 require("dotenv").config();
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
+client.commands = new Collection();
+const commandsPath = path.join(__dirname, 'commands');
+const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+
+for (const file of commandFiles) {
+	
+	const filePath = path.join(commandsPath, file);
+	const command = require(filePath);
+	client.commands.set(command.data.name, command);
+
+}
+
 client.once('ready', () => {
 	console.log('Ready!');
-});
-
-client.on('interactionCreate', async interaction => {
-	if (!interaction.isChatInputCommand()) return;
-
-	const { commandName } = interaction;
-
-	if (commandName === 'yo') {
-		await interaction.reply('yo');
-	} else if (commandName === 'server') {
-		await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}\n Server created: ${interaction.guild.createdAt}` );
-	} else if (commandName === 'user') {
-		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id} Your Discord Birthday: ${interaction.user.createdAt}`);
-	} else if (commandName === 'meow') {
-		await interaction.reply('meow')
-	}
-
-});
-
-client.on('interactionCreate', async interaction => {
-	if (!interaction.isChatInputCommand()) return;
-
-	if (interaction.commandName === 'button') {
-		const row = new ActionRowBuilder()
-			.addComponents(
-				new ButtonBuilder()
-					.setCustomId('primary')
-					.setLabel('Click me!')
-					.setStyle(ButtonStyle.Primary),
-			);
-
-		await interaction.reply({ content: 'A wild button appeared!', components: [row] });
-	}
 });
 
 
