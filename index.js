@@ -20,7 +20,7 @@ client.on('interactionCreate', async interaction => {
 	} else if (commandName === 'server') {
 		await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}\n Server created: ${interaction.guild.createdAt}` );
 	} else if (commandName === 'user') {
-		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
+		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id} Your Discord Birthday: ${interaction.user.createdAt}`);
 	} else if (commandName === 'meow') {
 		await interaction.reply('meow')
 	}

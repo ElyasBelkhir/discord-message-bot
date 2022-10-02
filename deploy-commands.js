@@ -10,6 +10,7 @@ const commands = [
 	new SlashCommandBuilder().setName('user').setDescription('Replies with user info!'),
     new SlashCommandBuilder().setName('meow').setDescription('Replies with meow'),
     new SlashCommandBuilder().setName('button').setDescription('Replies with button'),
+	
 
 
 ]
