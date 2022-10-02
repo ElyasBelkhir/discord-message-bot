@@ -7,10 +7,5 @@ module.exports = {
     async execute(interaction) {
 		await interaction.reply('yo')
     },
-    data: new SlashCommandBuilder()
-        .setName('meow')
-        .setDescription('Replies with meow'),
-    async execute(interaction) {
-		await interaction.reply('meow')
-    }
+    
 };
