@@ -9,7 +9,6 @@ const commands = [
 	new SlashCommandBuilder().setName('server').setDescription('Replies with server info!'),
 	new SlashCommandBuilder().setName('user').setDescription('Replies with user info!'),
     new SlashCommandBuilder().setName('meow').setDescription('Replies with meow'),
-    new SlashCommandBuilder().setName('tyler1').setDescription('Replies with tyler1'),
     new SlashCommandBuilder().setName('button').setDescription('Replies with button'),
 
 

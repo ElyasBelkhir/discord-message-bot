@@ -1,7 +1,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, GatewayIntentBits } = require('discord.js');
-const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { AttachmentBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 require("dotenv").config();
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -22,10 +22,8 @@ client.on('interactionCreate', async interaction => {
 	} else if (commandName === 'user') {
 		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
 	} else if (commandName === 'meow') {
-		await interaction.reply('meow');
-    } else if (commandName === 'tyler1') {
-		await interaction.reply('https://www.youtube.com/watch?v=X2QMN0a_TrA');
-    } 
+		await interaction.reply('meow')
+	}
 
 });
 
@@ -44,6 +42,7 @@ client.on('interactionCreate', async interaction => {
 		await interaction.reply({ content: 'A wild button appeared!', components: [row] });
 	}
 });
+
 
 
 client.login(process.env.TOKEN);
